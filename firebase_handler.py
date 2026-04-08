@@ -1,30 +1,31 @@
-import aiohttp
+import requests
 import tempfile
 import os
 
 FIREBASE_DB_URL = "https://fir-app-buyer-default-rtdb.firebaseio.com/.json"
 
-async def get_mapping():
-    async with aiohttp.ClientSession() as session:
-        async with session.get(FIREBASE_DB_URL) as resp:
-            data = await resp.json()
 
-            # 🔥 FIX: apks ke andar se read karo
-            if data and "apks" in data:
-                return data["apks"]
-            return {}
+def get_mapping():
+    resp = requests.get(FIREBASE_DB_URL)
+    data = resp.json()
 
-async def download_apk(code):
-    mapping = await get_mapping()
+    # 🔥 same logic: apks ke andar se read karo
+    if data and "apks" in data:
+        return data["apks"]
+
+    return {}
+
+
+def download_apk(code):
+    mapping = get_mapping()
 
     if code not in mapping:
         raise Exception("Invalid Code")
 
     url = mapping[code]
 
-    async with aiohttp.ClientSession() as session:
-        async with session.get(url) as resp:
-            data = await resp.read()
+    resp = requests.get(url)
+    data = resp.content
 
     fd, path = tempfile.mkstemp(suffix=".apk")
     os.close(fd)
