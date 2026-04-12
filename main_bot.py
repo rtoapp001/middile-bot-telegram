@@ -1,10 +1,12 @@
 import asyncio
 import os
 import logging
+import sqlite3
 import time
 import signal
 from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
+from aiogram.utils.exceptions import TerminatedByOtherGetUpdates
 
 from config import BOT_TOKEN, ADMIN_ID
 from firebase_handler import download_apk
@@ -31,6 +33,8 @@ dp = Dispatcher(bot, storage=MemoryStorage())
 
 AI_REPLY = "🤖 Your APK has been queued. Please wait 5 minutes..."
 
+# Pending status messages to delete when APK is ready
+pending_user_messages = {}  # user_id -> list[tuple[chat_id, message_id]]
 
 # 🔥 Save leads
 def save_lead(user):
@@ -134,6 +138,7 @@ async def handle(message: types.Message):
         formatter.format_processing_message(code),
         parse_mode="HTML"
     )
+    pending_user_messages.setdefault(user_id, []).append((message.chat.id, status_msg.message_id))
 
     try:
         logger.info(f"Processing code {code} from user {user_id} (Request #{request_id})")
@@ -215,6 +220,15 @@ async def response_handler():
             user_id, file_path = await bridge.responses_queue.get()
 
             try:
+                # Delete previous status/messages before sending final APK
+                if user_id in pending_user_messages:
+                    for chat_id, msg_id in pending_user_messages[user_id]:
+                        try:
+                            await bot.delete_message(chat_id, msg_id)
+                        except Exception:
+                            pass
+                    del pending_user_messages[user_id]
+
                 with open(file_path, "rb") as f:
                     await bot.send_document(
                         user_id, 
@@ -249,7 +263,8 @@ async def status_update_handler():
             
             try:
                 logger.info(f"📨 Sending status update to user {user_id}")
-                await bot.send_message(user_id, status_message, parse_mode="HTML")
+                status_obj = await bot.send_message(user_id, status_message, parse_mode="HTML")
+                pending_user_messages.setdefault(user_id, []).append((user_id, status_obj.message_id))
             except Exception as e:
                 logger.error(f"❌ Error sending status to {user_id}: {e}")
         except Exception as e:
@@ -283,6 +298,9 @@ async def broadcast(message: types.Message):
 
 
 # 🔥 MAIN
+from aiogram.utils.exceptions import TerminatedByOtherGetUpdates
+
+
 async def main():
     try:
         logger.info("⏳ Initializing bot components...")
@@ -293,8 +311,16 @@ async def main():
         asyncio.create_task(response_handler())
         asyncio.create_task(status_update_handler())
         
+        # Clear any webhook and pending updates before polling
+        await bot.delete_webhook(drop_pending_updates=True)
+        logger.info("✅ Webhook cleared, pending updates dropped")
+        
+        # Drop any old updates and start fresh
+        await dp.skip_updates()
+        logger.info("✅ Old updates skipped")
+        
         logger.info("🚀 Bot started successfully")
-        await dp.start_polling(relax=0.1, timeout=20)
+        await dp.start_polling(relax=0.1, timeout=20, reset_webhook=True)
         
     except asyncio.CancelledError:
         logger.info("✋ Bot shutdown requested")
@@ -315,12 +341,21 @@ async def run_bot_with_restart():
         except asyncio.CancelledError:
             logger.info("Bot gracefully stopped")
             break
+        except TerminatedByOtherGetUpdates as e:
+            logger.error("❌ Another bot instance or polling session is active for this token.")
+            logger.error(f"🔄 Retrying in {restart_delay}s: {e}")
+            await asyncio.sleep(restart_delay)
+            restart_delay = min(restart_delay * 1.5, max_delay)
+        except sqlite3.OperationalError as e:
+            logger.error(f"❌ SQLite operational error: {e}")
+            logger.error(f"🔄 Waiting {restart_delay}s before retrying")
+            await asyncio.sleep(restart_delay)
+            restart_delay = min(restart_delay * 1.5, max_delay)
         except Exception as e:
             logger.error(f"🔄 Bot crashed, restarting in {restart_delay}s: {e}")
             await asyncio.sleep(restart_delay)
-            # Exponential backoff: increase delay up to max_delay
             restart_delay = min(restart_delay * 1.5, max_delay)
-            logger.info(f"�� Attempting restart...")
+            logger.info("🔁 Attempting restart...")
 
 
 if __name__ == "__main__":
