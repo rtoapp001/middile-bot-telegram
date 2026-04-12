@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.telegrambot.middle</string>
+    
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/vivekkumar/Desktop/manage/middile bot telegram/main_bot.py</string>
+    </array>
+    
+    <key>WorkingDirectory</key>
+    <string>/Users/vivekkumar/Desktop/manage/middile bot telegram</string>
+    
+    <!-- Auto-restart on crash -->
+    <key>KeepAlive</key>
+    <true/>
+    
+    <!-- Restart after 30 seconds if it crashes -->
+    <key>ThrottleInterval</key>
+    <integer>30</integer>
+    
+    <!-- Log output -->
+    <key>StandardOutPath</key>
+    <string>/Users/vivekkumar/Desktop/manage/middile bot telegram/logs/bot.log</string>
+    
+    <key>StandardErrorPath</key>
+    <string>/Users/vivekkumar/Desktop/manage/middile bot telegram/logs/bot_error.log</string>
+    
+    <!-- Environment -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin</string>
+        <key>PYTHONUNBUFFERED</key>
+        <string>1</string>
+    </dict>
+</dict>
+</plist>

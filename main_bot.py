@@ -1,5 +1,8 @@
 import asyncio
 import os
+import logging
+import time
+import signal
 from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 
@@ -8,6 +11,20 @@ from firebase_handler import download_apk
 import bridge
 from bridge import send_apk, start_worker
 from userbot import start_userbot
+from database import db
+from rate_limiter import rate_limiter
+from ui_helper import ui, formatter, notifications
+
+# 📝 Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('bot.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
 
 bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(bot, storage=MemoryStorage())
@@ -24,48 +41,220 @@ def save_lead(user):
 # ✅ START COMMAND
 @dp.message_handler(commands=["start"])
 async def start_cmd(message: types.Message):
-    save_lead(message.from_user)
-    await message.reply("👋 Welcome!\nSend code like U12345")
+    user = message.from_user
+    
+    # Add to database
+    db.add_user(user.id, user.username, user.first_name, user.last_name or "")
+    save_lead(user)
+    
+    welcome_text = formatter.format_welcome_message(user.first_name or "User")
+    await message.answer(welcome_text, reply_markup=ui.get_start_keyboard(), parse_mode="HTML")
+    logger.info(f"👤 New/returning user: {user.id} - {user.username}")
+
+
+# ✅ HELP COMMAND
+@dp.message_handler(commands=["help"])
+async def help_cmd(message: types.Message):
+    await message.answer(ui.get_help_message(), parse_mode="Markdown")
+
+
+# ✅ ABOUT COMMAND
+@dp.message_handler(commands=["about"])
+async def about_cmd(message: types.Message):
+    await message.answer(ui.get_about_message(), parse_mode="Markdown")
+
+
+# ✅ STATS COMMAND
+@dp.message_handler(commands=["stats"])
+async def stats_cmd(message: types.Message):
+    user_id = message.from_user.id
+    stats = db.get_user_stats(user_id)
+    
+    if stats:
+        stats_text = formatter.format_welcome_message(message.from_user.first_name) + "\n" + ui.get_stats_message(stats)
+        await message.answer(stats_text, reply_markup=ui.get_stats_keyboard(), parse_mode="HTML")
+    else:
+        await message.answer("❌ कोई data नहीं\n\n(No stats available)", reply_markup=ui.get_stats_keyboard())
+
+
+# ✅ ADMIN STATS COMMAND
+@dp.message_handler(commands=["admin"])
+async def admin_cmd(message: types.Message):
+    if message.from_user.id != ADMIN_ID:
+        await message.reply("❌ Admin only")
+        return
+    
+    stats = db.get_admin_stats()
+    admin_text = f"""
+📊 <b>Bot Analytics</b>
+
+👥 Total Users: {stats.get('total_users', 0)}
+📥 Total Downloads: {stats.get('total_downloads', 0)}
+⏳ Pending Requests: {stats.get('pending_requests', 0)}
+⏱️ Avg Time: {stats.get('avg_time_minutes', 0)} minutes
+
+Last Update: Just now
+"""
+    await message.answer(admin_text, reply_markup=ui.get_admin_keyboard(), parse_mode="HTML")
 
 
 # ✅ MAIN HANDLER
 @dp.message_handler()
 async def handle(message: types.Message):
-    code = message.text.strip()
+    user_id = message.from_user.id
+    code = message.text.strip().upper()
 
-    if not code.startswith("U"):
-        await message.reply("❌ Invalid code")
+    # Validate code format
+    if not code.startswith("U") or len(code) < 5:
+        await message.reply(
+            "❌ Invalid code format\n\n"
+            "Correct: U12345\n"
+            "/help for more info",
+            reply_markup=ui.get_start_keyboard()
+        )
         return
-
-    await message.reply(AI_REPLY)
+    
+    # Check if user is blocked
+    if db.is_user_blocked(user_id):
+        await message.reply("🚫 You have been blocked from using this bot")
+        logger.warning(f"⛔ Blocked user {user_id} tried to access")
+        return
+    
+    # Check rate limits
+    allowed, limit_msg = rate_limiter.check_rate_limit(user_id)
+    if not allowed:
+        await message.reply(limit_msg)
+        logger.warning(f"⚠️ Rate limit triggered for user {user_id}")
+        return
+    
+    # Create request in database
+    request_id = db.create_request(user_id, code)
+    
+    status_msg = await message.reply(
+        formatter.format_processing_message(code),
+        parse_mode="HTML"
+    )
 
     try:
+        logger.info(f"Processing code {code} from user {user_id} (Request #{request_id})")
         file_path = download_apk(code)
 
-        # 🔥 send request to worker
-        await send_apk(file_path, message.from_user.id)
+        # Send to android_protect_bot
+        await send_apk(file_path, user_id, request_id)
+        db.update_request_status(request_id, "in_queue")
+        logger.info(f"✅ APK sent for code {code}")
 
     except Exception as e:
-        print(e)
-        await message.reply("❌ Error")
+        logger.error(f"Error processing code {code}: {e}", exc_info=True)
+        db.update_request_status(request_id, "error")
+        await message.reply(formatter.format_error_message(str(e)))
 
 
-# 🔥 RESPONSE HANDLER
+# ✅ CALLBACK HANDLER FOR BUTTONS
+@dp.callback_query_handler(lambda c: c.data == "my_stats")
+async def callback_stats(call: types.CallbackQuery):
+    await stats_cmd(call.message)
+    await call.answer()
+
+
+@dp.callback_query_handler(lambda c: c.data == "help")
+async def callback_help(call: types.CallbackQuery):
+    await call.message.answer(ui.get_help_message(), parse_mode="Markdown")
+    await call.answer()
+
+
+@dp.callback_query_handler(lambda c: c.data == "about")
+async def callback_about(call: types.CallbackQuery):
+    await call.message.answer(ui.get_about_message(), parse_mode="Markdown")
+    await call.answer()
+
+
+@dp.callback_query_handler(lambda c: c.data == "get_apk")
+async def callback_get_apk(call: types.CallbackQuery):
+    await call.message.answer(
+        "📱 APK Code भेजो\n\n"
+        "Ex: U12345",
+        reply_markup=ui.get_start_keyboard()
+    )
+    await call.answer()
+
+
+@dp.callback_query_handler(lambda c: c.data == "back")
+async def callback_back(call: types.CallbackQuery):
+    welcome_text = formatter.format_welcome_message(call.from_user.first_name or "User")
+    await call.message.answer(welcome_text, reply_markup=ui.get_start_keyboard(), parse_mode="HTML")
+    await call.answer()
+
+
+@dp.callback_query_handler(lambda c: c.data == "admin_stats")
+async def callback_admin_stats(call: types.CallbackQuery):
+    if call.from_user.id != ADMIN_ID:
+        await call.answer("❌ Admin only", show_alert=True)
+        return
+    
+    stats = db.get_admin_stats()
+    admin_text = f"""
+📊 <b>Bot Analytics</b>
+
+👥 Total Users: {stats.get('total_users', 0)}
+📥 Total Downloads: {stats.get('total_downloads', 0)}
+⏳ Pending Requests: {stats.get('pending_requests', 0)}
+⏱️ Avg Time: {stats.get('avg_time_minutes', 0)} minutes
+
+Last Update: Just now
+"""
+    await call.message.answer(admin_text, parse_mode="HTML")
+    await call.answer()
+
+
+# 🔥 RESPONSE HANDLER (APK Files)
 async def response_handler():
+    logger.info("📥 Response handler started")
     while True:
-        user_id, file_path = await bridge.responses_queue.get()
-
         try:
-            with open(file_path, "rb") as f:
-                await bot.send_document(user_id, f)
+            user_id, file_path = await bridge.responses_queue.get()
 
+            try:
+                with open(file_path, "rb") as f:
+                    await bot.send_document(
+                        user_id, 
+                        f,
+                        caption="✅ APK Ready!\n\n📥 Download करो और install करो"
+                    )
+                    logger.info(f"✅ APK file sent to user {user_id}")
+                    
+                    # Mark all pending requests as completed
+                    # (In production, track request_id separately)
+                    db.get_all_users_count()  # Just to log activity
+
+            except Exception as e:
+                logger.error(f"Error sending file to {user_id}: {e}")
+                await bot.send_message(user_id, "❌ Error sending APK")
+
+            finally:
+                if os.path.exists(file_path):
+                    os.remove(file_path)
         except Exception as e:
-            print(e)
-            await bot.send_message(user_id, "❌ Send error")
+            logger.error(f"Error in response_handler: {e}", exc_info=True)
+            await asyncio.sleep(5)
 
-        finally:
-            if os.path.exists(file_path):
-                os.remove(file_path)
+
+# 🔥 STATUS UPDATE HANDLER
+async def status_update_handler():
+    """Listen for status updates from android_protect_bot and send to users"""
+    logger.info("🔔 Status update handler started")
+    while True:
+        try:
+            user_id, status_message = await bridge.status_queue.get()
+            
+            try:
+                logger.info(f"📨 Sending status update to user {user_id}")
+                await bot.send_message(user_id, status_message, parse_mode="HTML")
+            except Exception as e:
+                logger.error(f"❌ Error sending status to {user_id}: {e}")
+        except Exception as e:
+            logger.error(f"❌ Error in status_update_handler: {e}")
+            await asyncio.sleep(5)
 
 
 # 🔥 BROADCAST
@@ -95,14 +284,49 @@ async def broadcast(message: types.Message):
 
 # 🔥 MAIN
 async def main():
-    await start_userbot()
-    await start_worker()
+    try:
+        logger.info("⏳ Initializing bot components...")
+        await start_userbot()
+        await start_worker()
+        
+        # Start both handlers
+        asyncio.create_task(response_handler())
+        asyncio.create_task(status_update_handler())
+        
+        logger.info("🚀 Bot started successfully")
+        await dp.start_polling(relax=0.1, timeout=20)
+        
+    except asyncio.CancelledError:
+        logger.info("✋ Bot shutdown requested")
+        raise
+    except Exception as e:
+        logger.error(f"❌ Error in main loop: {e}", exc_info=True)
+        raise
 
-    asyncio.create_task(response_handler())
 
-    print("🚀 Bot started")
-    await dp.start_polling()
+async def run_bot_with_restart():
+    """Run bot with automatic restart on crash"""
+    restart_delay = 5
+    max_delay = 300  # Max 5 minutes
+    
+    while True:
+        try:
+            await main()
+        except asyncio.CancelledError:
+            logger.info("Bot gracefully stopped")
+            break
+        except Exception as e:
+            logger.error(f"🔄 Bot crashed, restarting in {restart_delay}s: {e}")
+            await asyncio.sleep(restart_delay)
+            # Exponential backoff: increase delay up to max_delay
+            restart_delay = min(restart_delay * 1.5, max_delay)
+            logger.info(f"�� Attempting restart...")
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(run_bot_with_restart())
+    except KeyboardInterrupt:
+        logger.info("Bot interrupted by user")
+    except Exception as e:
+        logger.error(f"Fatal error: {e}", exc_info=True)
