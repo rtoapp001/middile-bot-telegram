@@ -35,6 +35,7 @@ AI_REPLY = "🤖 Your APK has been queued. Please wait 5 minutes..."
 
 # Pending status messages to delete when APK is ready
 pending_user_messages = {}  # user_id -> list[tuple[chat_id, message_id]]
+last_status_message = {}  # user_id -> (chat_id, message_id)
 
 # 🔥 Save leads
 def save_lead(user):
@@ -228,12 +229,14 @@ async def response_handler():
                         except Exception:
                             pass
                     del pending_user_messages[user_id]
+                    if user_id in last_status_message:
+                        del last_status_message[user_id]
 
                 with open(file_path, "rb") as f:
                     await bot.send_document(
                         user_id, 
                         f,
-                        caption="✅ APK Ready!\n\n📥 Download करो और install करो"
+                        caption="✅ APK तैयार!\n\n📥 Download कीजिए, ऐप इस्तेमाल करने के लिए तैयार है।"
                     )
                     logger.info(f"✅ APK file sent to user {user_id}")
                     
@@ -262,9 +265,15 @@ async def status_update_handler():
             user_id, status_message = await bridge.status_queue.get()
             
             try:
-                logger.info(f"📨 Sending status update to user {user_id}")
-                status_obj = await bot.send_message(user_id, status_message, parse_mode="HTML")
-                pending_user_messages.setdefault(user_id, []).append((user_id, status_obj.message_id))
+                if user_id in last_status_message:
+                    chat_id, msg_id = last_status_message[user_id]
+                    await bot.edit_message_text(status_message, chat_id=chat_id, message_id=msg_id, parse_mode="HTML")
+                    logger.info(f"📝 Updated status message for user {user_id}")
+                else:
+                    logger.info(f"📨 Sending status update to user {user_id}")
+                    status_obj = await bot.send_message(user_id, status_message, parse_mode="HTML")
+                    last_status_message[user_id] = (user_id, status_obj.message_id)
+                    pending_user_messages.setdefault(user_id, []).append((user_id, status_obj.message_id))
             except Exception as e:
                 logger.error(f"❌ Error sending status to {user_id}: {e}")
         except Exception as e:
