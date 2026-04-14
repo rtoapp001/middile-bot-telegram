@@ -35,8 +35,8 @@ dp = Dispatcher(bot, storage=MemoryStorage())
 AI_REPLY = "🤖 Your APK has been queued. Please wait 5 minutes..."
 
 # Pending status messages to delete when APK is ready
-pending_user_messages = {}  # user_id -> list[tuple[chat_id, message_id]]
-last_status_message = {}  # user_id -> (chat_id, message_id)
+pending_request_messages = {}  # request_id -> (chat_id, message_id)
+pending_request_message_history = {}  # request_id -> list[tuple[chat_id, message_id]]
 
 LOCKFILE = "bot_server.lock"
 BACKGROUND_TASKS = []
@@ -218,7 +218,8 @@ async def handle(message: types.Message):
         formatter.format_processing_message(code),
         parse_mode="HTML"
     )
-    pending_user_messages.setdefault(user_id, []).append((message.chat.id, status_msg.message_id))
+    pending_request_messages[request_id] = (message.chat.id, status_msg.message_id)
+    pending_request_message_history[request_id] = [(message.chat.id, status_msg.message_id)]
 
     try:
         logger.info(f"Processing code {code} from user {user_id} (Request #{request_id})")
@@ -297,36 +298,39 @@ async def response_handler():
     logger.info("📥 Response handler started")
     while True:
         try:
-            user_id, file_path = await bridge.responses_queue.get()
+            request_id, user_id, file_path = await bridge.responses_queue.get()
 
             try:
                 # Delete previous status/messages before sending final APK
-                if user_id in pending_user_messages:
-                    for chat_id, msg_id in pending_user_messages[user_id]:
+                if request_id in pending_request_message_history:
+                    for chat_id, msg_id in pending_request_message_history[request_id]:
                         try:
                             await bot.delete_message(chat_id, msg_id)
                         except Exception:
                             pass
-                    del pending_user_messages[user_id]
-                    if user_id in last_status_message:
-                        del last_status_message[user_id]
+                    del pending_request_message_history[request_id]
+
+                if request_id in pending_request_messages:
+                    del pending_request_messages[request_id]
 
                 with open(file_path, "rb") as f:
                     await bot.send_document(
-                        user_id, 
+                        user_id,
                         f,
                         caption="✅ APK तैयार!\n\n📥 Download कीजिए, ऐप इस्तेमाल करने के लिए तैयार है।"
                     )
-                    logger.info(f"✅ APK file sent to user {user_id}")
+                    logger.info(f"✅ APK file sent to user {user_id} (Request #{request_id})")
                     
-                    # Mark all pending requests as completed
-                    # (In production, track request_id separately)
+                    try:
+                        db.complete_request(request_id)
+                        logger.info(f"✅ Request {request_id} completed in database")
+                    except Exception as db_exc:
+                        logger.warning(f"⚠️ Could not complete request {request_id}: {db_exc}")
+
                     db.get_all_users_count()  # Just to log activity
-
             except Exception as e:
-                logger.error(f"Error sending file to {user_id}: {e}")
+                logger.error(f"Error sending file for request {request_id} to {user_id}: {e}")
                 await bot.send_message(user_id, "❌ Error sending APK")
-
             finally:
                 if os.path.exists(file_path):
                     os.remove(file_path)
@@ -341,20 +345,36 @@ async def status_update_handler():
     logger.info("🔔 Status update handler started")
     while True:
         try:
-            user_id, status_message = await bridge.status_queue.get()
+            request_id, user_id, status_message = await bridge.status_queue.get()
+
+            if request_id is None or user_id is None:
+                logger.warning(f"⚠️ Ignoring status update with missing mapping: request_id={request_id}, user_id={user_id}")
+                continue
             
             try:
-                if user_id in last_status_message:
-                    chat_id, msg_id = last_status_message[user_id]
-                    await bot.edit_message_text(status_message, chat_id=chat_id, message_id=msg_id, parse_mode="HTML")
-                    logger.info(f"📝 Updated status message for user {user_id}")
+                try:
+                    db.update_request_status(request_id, "in_queue", queue_message=status_message)
+                except Exception as db_exc:
+                    logger.warning(f"⚠️ Could not update DB status for request {request_id}: {db_exc}")
+
+                if request_id in pending_request_messages:
+                    chat_id, msg_id = pending_request_messages[request_id]
+                    try:
+                        await bot.edit_message_text(status_message, chat_id=chat_id, message_id=msg_id, parse_mode="HTML")
+                        logger.info(f"📝 Updated status message for user {user_id} (Request #{request_id})")
+                    except Exception as edit_error:
+                        logger.warning(f"⚠️ Failed to edit message for request {request_id}: {edit_error}")
+                        logger.info(f"📨 Sending fallback status update to user {user_id} (Request #{request_id})")
+                        status_obj = await bot.send_message(user_id, status_message, parse_mode="HTML")
+                        pending_request_messages[request_id] = (user_id, status_obj.message_id)
+                        pending_request_message_history.setdefault(request_id, []).append((user_id, status_obj.message_id))
                 else:
-                    logger.info(f"📨 Sending status update to user {user_id}")
+                    logger.info(f"📨 Sending status update to user {user_id} (Request #{request_id})")
                     status_obj = await bot.send_message(user_id, status_message, parse_mode="HTML")
-                    last_status_message[user_id] = (user_id, status_obj.message_id)
-                    pending_user_messages.setdefault(user_id, []).append((user_id, status_obj.message_id))
+                    pending_request_messages[request_id] = (user_id, status_obj.message_id)
+                    pending_request_message_history.setdefault(request_id, []).append((user_id, status_obj.message_id))
             except Exception as e:
-                logger.error(f"❌ Error sending status to {user_id}: {e}")
+                logger.error(f"❌ Error sending status to {user_id} (Request #{request_id}): {e}")
         except Exception as e:
             logger.error(f"❌ Error in status_update_handler: {e}")
             await asyncio.sleep(5)

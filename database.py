@@ -128,6 +128,12 @@ class Database:
             
             conn.commit()
             request_id = cursor.lastrowid
+
+            cursor.execute("""
+                INSERT OR REPLACE INTO queue_status (request_id, user_id, queue_message)
+                VALUES (?, ?, NULL)
+            """, (request_id, user_id))
+            conn.commit()
             conn.close()
             
             logger.info(f"✅ Request {request_id} created for user {user_id}")

@@ -8,10 +8,9 @@ from config import TARGET_BOT_USERNAME, BOT_TOKEN
 
 logger = logging.getLogger(__name__)
 
-# 🔥 Per-user queues with tracking
-user_queues = {}  # user_id -> {'queue': asyncio.Queue(), 'timestamp': time}
-pending_requests = {}  # file_name -> user_id (for tracking which file belongs to which user)
-user_to_request = {}  # user_id -> request_id (for tracking requests)
+# 🔥 Pending request tracking
+pending_request_order = []  # FIFO list of request_ids waiting for file response
+request_to_user = {}  # request_id -> user_id
 
 # 🔥 Global response queues
 responses_queue = None
@@ -31,72 +30,73 @@ async def setup_handler():
     except:
         logger.warning("Could not import Bot for status updates")
     
-    @userbot.client.on(events.NewMessage(from_users=TARGET_BOT_USERNAME))
-    async def handler(event):
-        logger.info(f"📨 Message from {TARGET_BOT_USERNAME}: {event.message.text if event.message.text else '[FILE]'}")
+    async def _process_target_message(event):
+        text = event.message.text.strip() if event.message and event.message.text else None
+        logger.info(f"📨 Message from {TARGET_BOT_USERNAME}: {text if text else '[FILE]'}")
         
         # 🔥 CASE 1: File received (APK)
-        if event.message.file:
+        if event.message and event.message.file:
             logger.info("📦 APK file received")
             
-            # Get first waiting user
-            for user_id, data in list(user_queues.items()):
-                queue = data['queue']
-                if not queue.empty():
-                    try:
-                        file_info = await queue.get()
-                        
-                        fd, path = tempfile.mkstemp(suffix=".apk")
-                        os.close(fd)
-                        
-                        await event.download_media(path)
-                        logger.info(f"✅ APK downloaded for user {user_id}")
-                        
-                        await responses_queue.put((user_id, path))
-                        
-                        # Mark request as completed in database
-                        if user_id in user_to_request:
-                            from database import db
-                            request_id = user_to_request[user_id]
-                            db.complete_request(request_id)
-                            del user_to_request[user_id]
-                        
-                        # Clean up
-                        if user_id in user_queues:
-                            del user_queues[user_id]
-                        return
-                    except Exception as e:
-                        logger.error(f"❌ Error downloading APK: {e}")
-                        return
-        
+            if not pending_request_order:
+                logger.warning("⚠️ Received APK file but no pending request exists")
+                return
+
+            request_id = pending_request_order.pop(0)
+            user_id = request_to_user.pop(request_id, None)
+
+            try:
+                fd, path = tempfile.mkstemp(suffix=".apk")
+                os.close(fd)
+                await event.download_media(path)
+                logger.info(f"✅ APK downloaded for user {user_id} (Request #{request_id})")
+                await responses_queue.put((request_id, user_id, path))
+            except Exception as e:
+                logger.error(f"❌ Error downloading APK for request {request_id}: {e}")
+            return
+
         # 🔥 CASE 2: Text message (Queue position, status, etc.)
-        if event.message.text:
-            text = event.message.text.strip()
+        if text:
             logger.info(f"📝 Text message from bot: {text}")
-            
-            # Find which user this status is for
-            for user_id in list(user_queues.keys()):
-                logger.info(f"📤 Sending status to user {user_id}: {text}")
-                await status_queue.put((user_id, text))
-                break
+            if not pending_request_order:
+                logger.warning("⚠️ Received status update but no pending request exists")
+                return
+
+            request_id = pending_request_order[0]
+            user_id = request_to_user.get(request_id)
+            logger.info(f"📤 Sending status to user {user_id} (Request #{request_id}): {text}")
+
+            if request_id is not None:
+                try:
+                    from database import db
+                    db.update_request_status(request_id, "in_queue", queue_message=text)
+                except Exception as e:
+                    logger.warning(f"⚠️ Could not update queue status in database for request {request_id}: {e}")
+
+            await status_queue.put((request_id, user_id, text))
+
+    @userbot.client.on(events.NewMessage(from_users=TARGET_BOT_USERNAME))
+    @userbot.client.on(events.MessageEdited(from_users=TARGET_BOT_USERNAME))
+    async def handler(event):
+        await _process_target_message(event)
 
 # 🔥 Send request to android_protect_bot
 async def send_apk(file_path, user_id, request_id=None):
-    if user_id not in user_queues:
-        user_queues[user_id] = {'queue': asyncio.Queue(), 'timestamp': None}
+    if request_id is None:
+        logger.warning("⚠️ send_apk called without request_id")
+    else:
+        request_to_user[request_id] = user_id
+        pending_request_order.append(request_id)
     
-    await user_queues[user_id]['queue'].put(file_path)
-    
-    # Track request_id for later completion
-    if request_id:
-        user_to_request[user_id] = request_id
-    
-    logger.info(f"📤 Sending APK to {TARGET_BOT_USERNAME} for user {user_id}")
+    logger.info(f"📤 Sending APK to {TARGET_BOT_USERNAME} for user {user_id} (Request #{request_id})")
     
     try:
         await userbot.client.send_file(TARGET_BOT_USERNAME, file_path)
     except Exception as e:
-        logger.error(f"❌ Error sending APK: {e}")
+        logger.error(f"❌ Error sending APK for request {request_id}: {e}")
+        if request_id is not None and request_id in pending_request_order:
+            pending_request_order.remove(request_id)
+            request_to_user.pop(request_id, None)
 
 # 🔥 Handler for status messages
 async def start_status_listener():
