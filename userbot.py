@@ -1,10 +1,12 @@
 import json
+import sqlite3
 from pathlib import Path
 from telethon import TelegramClient
 from config import API_ID, API_HASH, SESSION_NAME, PHONE, CODE
 
 client = None
 META_FILE = Path("session_meta.json")
+DB_TIMEOUT = 30  # 30 second timeout for session database
 
 
 def _clean_old_session():
@@ -35,6 +37,25 @@ def _clean_old_session():
         print("🧹 Old Telegram session cleared because credentials changed.")
 
 
+def _configure_session_db():
+    """Configure Telethon session database with proper SQLite settings."""
+    session_file = Path(f"{SESSION_NAME}.session")
+    if session_file.exists():
+        try:
+            conn = sqlite3.connect(str(session_file), timeout=DB_TIMEOUT)
+            cursor = conn.cursor()
+            # Enable WAL mode for better concurrency
+            cursor.execute("PRAGMA journal_mode=WAL")
+            # Set busy timeout
+            cursor.execute(f"PRAGMA busy_timeout={DB_TIMEOUT * 1000}")
+            # Normal synchronous mode for speed
+            cursor.execute("PRAGMA synchronous=NORMAL")
+            conn.close()
+            print("✅ Session database configured with WAL mode")
+        except Exception as e:
+            print(f"⚠️ Could not configure session DB: {e}")
+
+
 def _save_session_meta():
     try:
         with META_FILE.open("w", encoding="utf-8") as f:
@@ -63,5 +84,42 @@ async def start_userbot():
         else:
             await client.start(phone=PHONE)
     
+    # Configure the session database after it's created
+    _configure_session_db()
     _save_session_meta()
     print("✅ Userbot started")
+
+
+async def stop_userbot():
+    """Properly disconnect userbot"""
+    global client
+    if client:
+        try:
+            await client.disconnect()
+            print("✅ Userbot disconnected")
+        except Exception as e:
+            print(f"⚠️ Error disconnecting userbot: {e}")
+
+
+async def get_messages(entity, limit=10):
+    """Get messages from an entity with error handling"""
+    global client
+    if not client:
+        return []
+    
+    try:
+        messages = []
+        async for message in client.iter_messages(entity, limit=limit):
+            messages.append(message)
+        return messages
+    except sqlite3.OperationalError as e:
+        if "database is locked" in str(e):
+            print(f"⚠️ Session database locked, retrying...")
+            # Wait and retry
+            import asyncio
+            await asyncio.sleep(1)
+            return await get_messages(entity, limit)
+        raise
+    except Exception as e:
+        print(f"❌ Error getting messages: {e}")
+        return []

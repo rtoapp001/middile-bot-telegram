@@ -8,14 +8,39 @@ logger = logging.getLogger(__name__)
 # Database path
 DB_PATH = "bot_database.db"
 
+# Database timeout in seconds
+DB_TIMEOUT = 30
+
 class Database:
     def __init__(self):
+        self._init_sqlite()
         self.init_db()
+    
+    def _init_sqlite(self):
+        """Initialize SQLite with proper settings for concurrent access"""
+        try:
+            conn = sqlite3.connect(DB_PATH, timeout=DB_TIMEOUT)
+            cursor = conn.cursor()
+            # Enable WAL mode for better concurrency
+            cursor.execute("PRAGMA journal_mode=WAL")
+            # Increase busy timeout
+            cursor.execute(f"PRAGMA busy_timeout={DB_TIMEOUT * 1000}")
+            # Enable concurrent access
+            cursor.execute("PRAGMA synchronous=NORMAL")
+            conn.close()
+            logger.info("✅ SQLite initialized with WAL mode")
+        except Exception as e:
+            logger.error(f"❌ Error initializing SQLite: {e}")
+    
+    def _get_connection(self):
+        """Get a database connection with proper timeout settings"""
+        conn = sqlite3.connect(DB_PATH, timeout=DB_TIMEOUT, check_same_thread=False)
+        return conn
     
     def init_db(self):
         """Initialize database with tables"""
         try:
-            conn = sqlite3.connect(DB_PATH)
+            conn = self._get_connection()
             cursor = conn.cursor()
             
             # Users table
@@ -76,7 +101,7 @@ class Database:
     def add_user(self, user_id: int, username: str, first_name: str, last_name: str = ""):
         """Add or update user"""
         try:
-            conn = sqlite3.connect(DB_PATH)
+            conn = self._get_connection()
             cursor = conn.cursor()
             
             cursor.execute("""
@@ -93,7 +118,7 @@ class Database:
     def create_request(self, user_id: int, code: str) -> int:
         """Create new APK request, return request_id"""
         try:
-            conn = sqlite3.connect(DB_PATH)
+            conn = self._get_connection()
             cursor = conn.cursor()
             
             cursor.execute("""
@@ -114,7 +139,7 @@ class Database:
     def update_request_status(self, request_id: int, status: str, queue_message: str = None):
         """Update request status"""
         try:
-            conn = sqlite3.connect(DB_PATH)
+            conn = self._get_connection()
             cursor = conn.cursor()
             
             cursor.execute("""
@@ -136,7 +161,7 @@ class Database:
     def complete_request(self, request_id: int):
         """Mark request as completed"""
         try:
-            conn = sqlite3.connect(DB_PATH)
+            conn = self._get_connection()
             cursor = conn.cursor()
             
             # Get user_id
@@ -170,7 +195,7 @@ class Database:
     def get_user_stats(self, user_id: int) -> Dict:
         """Get user statistics"""
         try:
-            conn = sqlite3.connect(DB_PATH)
+            conn = self._get_connection()
             cursor = conn.cursor()
             
             cursor.execute("""
@@ -200,7 +225,7 @@ class Database:
     def get_all_users_count(self) -> int:
         """Get total number of users"""
         try:
-            conn = sqlite3.connect(DB_PATH)
+            conn = self._get_connection()
             cursor = conn.cursor()
             
             cursor.execute("SELECT COUNT(*) FROM users")
@@ -215,7 +240,7 @@ class Database:
     def get_pending_requests_count(self) -> int:
         """Get number of pending requests"""
         try:
-            conn = sqlite3.connect(DB_PATH)
+            conn = self._get_connection()
             cursor = conn.cursor()
             
             cursor.execute("SELECT COUNT(*) FROM requests WHERE status = 'pending'")
@@ -230,7 +255,7 @@ class Database:
     def get_last_request_time(self, user_id: int) -> Optional[datetime]:
         """Get last request time for rate limiting"""
         try:
-            conn = sqlite3.connect(DB_PATH)
+            conn = self._get_connection()
             cursor = conn.cursor()
             
             cursor.execute("""
@@ -253,7 +278,7 @@ class Database:
     def is_user_blocked(self, user_id: int) -> bool:
         """Check if user is blocked"""
         try:
-            conn = sqlite3.connect(DB_PATH)
+            conn = self._get_connection()
             cursor = conn.cursor()
             
             cursor.execute("SELECT is_blocked FROM users WHERE user_id = ?", (user_id,))
@@ -268,7 +293,7 @@ class Database:
     def block_user(self, user_id: int):
         """Block a user"""
         try:
-            conn = sqlite3.connect(DB_PATH)
+            conn = self._get_connection()
             cursor = conn.cursor()
             
             cursor.execute("UPDATE users SET is_blocked = 1 WHERE user_id = ?", (user_id,))
@@ -282,7 +307,7 @@ class Database:
     def get_admin_stats(self) -> Dict:
         """Get overall bot statistics"""
         try:
-            conn = sqlite3.connect(DB_PATH)
+            conn = self._get_connection()
             cursor = conn.cursor()
             
             cursor.execute("SELECT COUNT(*) FROM users")

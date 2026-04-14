@@ -1,3 +1,4 @@
+import atexit
 import asyncio
 import os
 import logging
@@ -37,10 +38,88 @@ AI_REPLY = "🤖 Your APK has been queued. Please wait 5 minutes..."
 pending_user_messages = {}  # user_id -> list[tuple[chat_id, message_id]]
 last_status_message = {}  # user_id -> (chat_id, message_id)
 
+LOCKFILE = "bot_server.lock"
+BACKGROUND_TASKS = []
+
 # 🔥 Save leads
 def save_lead(user):
     with open("leads.txt", "a") as f:
         f.write(f"{user.id},{user.username}\n")
+
+
+def _is_process_running(pid: int) -> bool:
+    try:
+        os.kill(pid, 0)
+    except OSError:
+        return False
+    return True
+
+
+def ensure_single_instance():
+    if os.path.exists(LOCKFILE):
+        existing_pid = None
+        try:
+            with open(LOCKFILE, "r") as f:
+                existing_pid = int(f.read().strip())
+        except Exception:
+            existing_pid = None
+
+        if existing_pid and existing_pid != os.getpid() and _is_process_running(existing_pid):
+            logger.error(f"Another bot instance is already running with PID {existing_pid}. Exiting.")
+            raise SystemExit("Another local bot instance is active")
+
+        logger.warning("Stale lockfile found, removing...")
+        try:
+            os.remove(LOCKFILE)
+        except OSError:
+            pass
+
+    with open(LOCKFILE, "w") as f:
+        f.write(str(os.getpid()))
+
+
+def remove_lockfile():
+    try:
+        if os.path.exists(LOCKFILE):
+            os.remove(LOCKFILE)
+    except OSError:
+        pass
+
+
+def _running_background_tasks() -> bool:
+    return any(task is not None and not task.done() for task in BACKGROUND_TASKS)
+
+
+def start_background_handlers():
+    if _running_background_tasks():
+        logger.info("Background handlers already running")
+        return
+
+    BACKGROUND_TASKS.clear()
+    BACKGROUND_TASKS.extend([
+        asyncio.create_task(response_handler(), name="response_handler"),
+        asyncio.create_task(status_update_handler(), name="status_update_handler"),
+    ])
+
+
+def cancel_background_handlers():
+    for task in BACKGROUND_TASKS:
+        if task and not task.done():
+            task.cancel()
+
+
+async def stop_polling_if_running():
+    if dp.is_polling():
+        logger.info("Stopping active polling before restart")
+        try:
+            await dp.stop_polling()
+        except Exception as e:
+            logger.warning(f"Error while stopping polling: {e}")
+
+    try:
+        await bot.delete_webhook(drop_pending_updates=True)
+    except Exception:
+        pass
 
 
 # ✅ START COMMAND
@@ -307,7 +386,6 @@ async def broadcast(message: types.Message):
 
 
 # 🔥 MAIN
-from aiogram.utils.exceptions import TerminatedByOtherGetUpdates
 
 
 async def main():
@@ -315,13 +393,11 @@ async def main():
         logger.info("⏳ Initializing bot components...")
         await start_userbot()
         await start_worker()
-        
-        # Start both handlers
-        asyncio.create_task(response_handler())
-        asyncio.create_task(status_update_handler())
+
+        start_background_handlers()
         
         # Clear any webhook and pending updates before polling
-        await bot.delete_webhook(drop_pending_updates=True)
+        await stop_polling_if_running()
         logger.info("✅ Webhook cleared, pending updates dropped")
         
         # Drop any old updates and start fresh
@@ -341,6 +417,9 @@ async def main():
 
 async def run_bot_with_restart():
     """Run bot with automatic restart on crash"""
+    ensure_single_instance()
+    atexit.register(remove_lockfile)
+
     restart_delay = 5
     max_delay = 300  # Max 5 minutes
     
@@ -353,15 +432,18 @@ async def run_bot_with_restart():
         except TerminatedByOtherGetUpdates as e:
             logger.error("❌ Another bot instance or polling session is active for this token.")
             logger.error(f"🔄 Retrying in {restart_delay}s: {e}")
+            await stop_polling_if_running()
             await asyncio.sleep(restart_delay)
             restart_delay = min(restart_delay * 1.5, max_delay)
         except sqlite3.OperationalError as e:
             logger.error(f"❌ SQLite operational error: {e}")
+            await stop_polling_if_running()
             logger.error(f"🔄 Waiting {restart_delay}s before retrying")
             await asyncio.sleep(restart_delay)
             restart_delay = min(restart_delay * 1.5, max_delay)
         except Exception as e:
             logger.error(f"🔄 Bot crashed, restarting in {restart_delay}s: {e}")
+            await stop_polling_if_running()
             await asyncio.sleep(restart_delay)
             restart_delay = min(restart_delay * 1.5, max_delay)
             logger.info("🔁 Attempting restart...")
@@ -372,5 +454,9 @@ if __name__ == "__main__":
         asyncio.run(run_bot_with_restart())
     except KeyboardInterrupt:
         logger.info("Bot interrupted by user")
+    except SystemExit as e:
+        logger.error(f"{e}")
     except Exception as e:
         logger.error(f"Fatal error: {e}", exc_info=True)
+    finally:
+        remove_lockfile()
