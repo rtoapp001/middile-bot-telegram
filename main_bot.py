@@ -39,6 +39,7 @@ pending_request_messages = {}  # request_id -> (chat_id, message_id)
 pending_request_message_history = {}  # request_id -> list[tuple[chat_id, message_id]]
 
 LOCKFILE = "bot_server.lock"
+DISABLE_FILE = "bot_disabled.lock"
 BACKGROUND_TASKS = []
 
 # 🔥 Save leads
@@ -84,6 +85,10 @@ def remove_lockfile():
             os.remove(LOCKFILE)
     except OSError:
         pass
+
+
+def is_disabled() -> bool:
+    return os.path.exists(DISABLE_FILE)
 
 
 def _running_background_tasks() -> bool:
@@ -440,10 +445,18 @@ async def run_bot_with_restart():
     ensure_single_instance()
     atexit.register(remove_lockfile)
 
+    if is_disabled():
+        logger.error(f"❌ Bot is disabled by {DISABLE_FILE}. Remove or rename this file to start again.")
+        return
+
     restart_delay = 5
     max_delay = 300  # Max 5 minutes
     
     while True:
+        if is_disabled():
+            logger.error(f"❌ Bot start aborted because {DISABLE_FILE} exists.")
+            break
+
         try:
             await main()
         except asyncio.CancelledError:
