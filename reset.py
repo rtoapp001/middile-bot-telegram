@@ -4,13 +4,14 @@ import signal
 import subprocess
 import sys
 import time
+from typing import Optional
 
 LOCKFILE = "bot_server.lock"
 DISABLE_FILE = "bot_disabled.lock"
 SCRIPT_NAMES = ["main_bot.py", "bridge.py"]
 
 
-def read_lockfile() -> int | None:
+def read_lockfile() -> Optional[int]:
     if not os.path.exists(LOCKFILE):
         return None
     try:
@@ -48,12 +49,13 @@ def remove_disable_file() -> None:
         print(f"Warning: could not remove disable file: {exc}")
 
 
-def kill_pid(pid: int, name: str | None = None) -> bool:
+def kill_pid(pid: int, name: Optional[str] = None) -> bool:
     if pid <= 0:
         return False
     try:
         os.kill(pid, signal.SIGTERM)
-        print(f"Sent SIGTERM to PID {pid}{' (' + name + ')' if name else ''}")
+        name_str = f" ({name})" if name else ""
+        print(f"Sent SIGTERM to PID {pid}{name_str}")
         return True
     except ProcessLookupError:
         return False

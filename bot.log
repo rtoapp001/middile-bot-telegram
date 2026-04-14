@@ -163,3 +163,1167 @@ Traceback (most recent call last):
   File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
     raise err(cls.text or description)
 aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:17:18,104 - INFO - ⏳ Initializing bot components...
+2026-04-14 10:17:18,105 - INFO - Connecting to 91.108.56.177:443/TcpFull...
+2026-04-14 10:17:18,218 - INFO - Connection to 91.108.56.177:443/TcpFull complete!
+2026-04-14 10:17:18,920 - INFO - 🚀 Bridge workers started
+2026-04-14 10:17:18,921 - INFO - 📥 Response handler started
+2026-04-14 10:17:18,921 - INFO - 🔔 Status update handler started
+2026-04-14 10:17:19,730 - INFO - ✅ Webhook cleared, pending updates dropped
+2026-04-14 10:17:19,932 - INFO - ✅ Old updates skipped
+2026-04-14 10:17:19,933 - INFO - 🚀 Bot started successfully
+2026-04-14 10:17:19,933 - INFO - Start polling.
+2026-04-14 10:17:24,691 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:17:35,192 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:17:45,747 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:17:54,029 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:18:04,628 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:18:09,559 - INFO - ⏳ Initializing bot components...
+2026-04-14 10:18:09,560 - INFO - Connecting to 91.108.56.177:443/TcpFull...
+2026-04-14 10:18:09,697 - INFO - Connection to 91.108.56.177:443/TcpFull complete!
+2026-04-14 10:18:10,409 - INFO - 🚀 Bridge workers started
+2026-04-14 10:18:10,411 - INFO - 📥 Response handler started
+2026-04-14 10:18:10,411 - INFO - 🔔 Status update handler started
+2026-04-14 10:18:11,253 - INFO - ✅ Webhook cleared, pending updates dropped
+2026-04-14 10:18:11,529 - INFO - ✅ Old updates skipped
+2026-04-14 10:18:11,530 - INFO - 🚀 Bot started successfully
+2026-04-14 10:18:11,530 - INFO - Start polling.
+2026-04-14 10:18:17,279 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:18:27,914 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:18:38,081 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:18:48,638 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:18:59,454 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:19:09,078 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:19:19,589 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:19:30,072 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:19:40,905 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:19:56,318 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:20:06,899 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:20:16,539 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:20:27,029 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:20:37,602 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:20:48,820 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:21:24,885 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:21:35,565 - INFO - ⏳ Initializing bot components...
+2026-04-14 10:21:35,566 - INFO - Connecting to 91.108.56.177:443/TcpFull...
+2026-04-14 10:21:35,706 - INFO - Connection to 91.108.56.177:443/TcpFull complete!
+2026-04-14 10:21:36,528 - INFO - 🚀 Bridge workers started
+2026-04-14 10:21:36,530 - INFO - 📥 Response handler started
+2026-04-14 10:21:36,530 - INFO - 🔔 Status update handler started
+2026-04-14 10:21:37,486 - INFO - ✅ Webhook cleared, pending updates dropped
+2026-04-14 10:21:37,890 - INFO - ✅ Old updates skipped
+2026-04-14 10:21:37,890 - INFO - 🚀 Bot started successfully
+2026-04-14 10:21:37,891 - INFO - Start polling.
+2026-04-14 10:22:01,264 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:22:36,789 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:23:25,234 - INFO - ⏳ Initializing bot components...
+2026-04-14 10:23:25,235 - INFO - Connecting to 91.108.56.177:443/TcpFull...
+2026-04-14 10:23:25,377 - INFO - Connection to 91.108.56.177:443/TcpFull complete!
+2026-04-14 10:23:26,974 - INFO - 🚀 Bridge workers started
+2026-04-14 10:23:26,976 - INFO - 📥 Response handler started
+2026-04-14 10:23:26,976 - INFO - 🔔 Status update handler started
+2026-04-14 10:23:29,058 - INFO - ✅ Webhook cleared, pending updates dropped
+2026-04-14 10:23:29,275 - INFO - ✅ Old updates skipped
+2026-04-14 10:23:29,275 - INFO - 🚀 Bot started successfully
+2026-04-14 10:23:29,275 - INFO - Start polling.
+2026-04-14 10:23:34,183 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:23:44,503 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:23:55,093 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:24:04,441 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:24:15,707 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:24:28,933 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:24:46,004 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:25:08,491 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:25:39,596 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:26:15,575 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:26:51,148 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:27:26,640 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:27:34,937 - INFO - ⏳ Initializing bot components...
+2026-04-14 10:27:34,939 - INFO - Connecting to 91.108.56.177:443/TcpFull...
+2026-04-14 10:27:35,085 - INFO - Connection to 91.108.56.177:443/TcpFull complete!
+2026-04-14 10:27:36,199 - INFO - 🚀 Bridge workers started
+2026-04-14 10:27:36,200 - INFO - 📥 Response handler started
+2026-04-14 10:27:36,200 - INFO - 🔔 Status update handler started
+2026-04-14 10:27:37,296 - INFO - ✅ Webhook cleared, pending updates dropped
+2026-04-14 10:27:37,533 - INFO - ✅ Old updates skipped
+2026-04-14 10:27:37,533 - INFO - 🚀 Bot started successfully
+2026-04-14 10:27:37,533 - INFO - Start polling.
+2026-04-14 10:27:42,639 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:27:53,189 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:28:03,973 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:28:12,720 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:28:23,173 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:28:36,119 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:28:53,066 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:29:15,701 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:29:29,985 - INFO - 📨 Message from @android_protect_bot: Your apk has been queued. Generally the server can process one apk within 5 minutes.
+
+Submission ID: **624250**
+Queue position: **1**
+2026-04-14 10:29:29,985 - INFO - 📝 Text message from bot: Your apk has been queued. Generally the server can process one apk within 5 minutes.
+
+Submission ID: **624250**
+Queue position: **1**
+2026-04-14 10:29:29,985 - WARNING - ⚠️ Received status update but no pending request exists
+2026-04-14 10:29:30,605 - INFO - 📨 Message from @android_protect_bot: Submission ID: **624250**
+Queue position: **0**
+Last updated: 0.01 minutes since submission
+
+__Your apk is currently being processed.__
+2026-04-14 10:29:30,605 - INFO - 📝 Text message from bot: Submission ID: **624250**
+Queue position: **0**
+Last updated: 0.01 minutes since submission
+
+__Your apk is currently being processed.__
+2026-04-14 10:29:30,605 - WARNING - ⚠️ Received status update but no pending request exists
+2026-04-14 10:29:46,724 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:29:54,821 - INFO - 📨 Message from @android_protect_bot: Submission ID: **624250**
+Queue position: **0**
+Last updated: 0.41 minutes since submission
+
+__Your apk is currently being processed.__
+2026-04-14 10:29:54,822 - INFO - 📝 Text message from bot: Submission ID: **624250**
+Queue position: **0**
+Last updated: 0.41 minutes since submission
+
+__Your apk is currently being processed.__
+2026-04-14 10:29:54,822 - WARNING - ⚠️ Received status update but no pending request exists
+2026-04-14 10:30:19,084 - INFO - 📨 Message from @android_protect_bot: Submission ID: **624250**
+Queue position: **0**
+Last updated: 0.82 minutes since submission
+
+__Your apk is currently being processed.__
+2026-04-14 10:30:19,084 - INFO - 📝 Text message from bot: Submission ID: **624250**
+Queue position: **0**
+Last updated: 0.82 minutes since submission
+
+__Your apk is currently being processed.__
+2026-04-14 10:30:19,085 - WARNING - ⚠️ Received status update but no pending request exists
+2026-04-14 10:30:22,514 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:30:44,076 - INFO - 📨 Message from @android_protect_bot: Submission ID: **624250**
+Queue position: **0**
+Last updated: 1.23 minutes since submission
+
+__Your apk is currently being processed.__
+2026-04-14 10:30:44,077 - INFO - 📝 Text message from bot: Submission ID: **624250**
+Queue position: **0**
+Last updated: 1.23 minutes since submission
+
+__Your apk is currently being processed.__
+2026-04-14 10:30:44,077 - WARNING - ⚠️ Received status update but no pending request exists
+2026-04-14 10:30:58,460 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:31:07,537 - INFO - 📨 Message from @android_protect_bot: Submission ID: **624250**
+Queue position: **0**
+Last updated: 1.63 minutes since submission
+
+__Your apk is currently being processed.__
+2026-04-14 10:31:07,537 - INFO - 📝 Text message from bot: Submission ID: **624250**
+Queue position: **0**
+Last updated: 1.63 minutes since submission
+
+__Your apk is currently being processed.__
+2026-04-14 10:31:07,537 - WARNING - ⚠️ Received status update but no pending request exists
+2026-04-14 10:31:31,612 - INFO - 📨 Message from @android_protect_bot: Submission ID: **624250**
+Queue position: **0**
+Last updated: 2.03 minutes since submission
+
+__Your apk is currently being processed.__
+2026-04-14 10:31:31,613 - INFO - 📝 Text message from bot: Submission ID: **624250**
+Queue position: **0**
+Last updated: 2.03 minutes since submission
+
+__Your apk is currently being processed.__
+2026-04-14 10:31:31,613 - WARNING - ⚠️ Received status update but no pending request exists
+2026-04-14 10:31:34,287 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:31:34,633 - INFO - 📨 Message from @android_protect_bot: [FILE]
+2026-04-14 10:31:34,634 - INFO - 📦 APK file received
+2026-04-14 10:31:34,634 - WARNING - ⚠️ Received APK file but no pending request exists
+2026-04-14 10:31:56,510 - INFO - 📨 Message from @android_protect_bot: Save our website https://access.uasecurity.org to get latest link to the bot.
+
+Join our channel to stay up to date: @protect_bot_official
+
+⚠️⚠️⚠️ Warning: There're known scammers using fake 'Fn' accounts to scam you and ask you for money. As the genuine author of this bot, I do NOT sell anything. Please be careful and don't send money!
+2026-04-14 10:31:56,511 - INFO - 📝 Text message from bot: Save our website https://access.uasecurity.org to get latest link to the bot.
+
+Join our channel to stay up to date: @protect_bot_official
+
+⚠️⚠️⚠️ Warning: There're known scammers using fake 'Fn' accounts to scam you and ask you for money. As the genuine author of this bot, I do NOT sell anything. Please be careful and don't send money!
+2026-04-14 10:31:56,511 - WARNING - ⚠️ Received status update but no pending request exists
+2026-04-14 10:32:09,739 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:32:46,103 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:33:59,105 - INFO - ⏳ Initializing bot components...
+2026-04-14 10:33:59,106 - INFO - Connecting to 91.108.56.177:443/TcpFull...
+2026-04-14 10:33:59,231 - INFO - Connection to 91.108.56.177:443/TcpFull complete!
+2026-04-14 10:34:00,489 - INFO - 🚀 Bridge workers started
+2026-04-14 10:34:00,490 - INFO - 📥 Response handler started
+2026-04-14 10:34:00,490 - INFO - 🔔 Status update handler started
+2026-04-14 10:34:01,637 - INFO - ✅ Webhook cleared, pending updates dropped
+2026-04-14 10:34:01,904 - INFO - ✅ Old updates skipped
+2026-04-14 10:34:01,904 - INFO - 🚀 Bot started successfully
+2026-04-14 10:34:01,904 - INFO - Start polling.
+2026-04-14 10:34:07,406 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:34:17,887 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:34:28,555 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:34:37,406 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 119, in check_result
+    exceptions.ConflictError.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 140, in detect
+    raise err(cls.text or description)
+aiogram.utils.exceptions.TerminatedByOtherGetUpdates: Terminated by other getupdates request; make sure that only one bot instance is running
+2026-04-14 10:34:48,701 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 121, in check_result
+    exceptions.Unauthorized.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 141, in detect
+    raise cls(description)
+aiogram.utils.exceptions.Unauthorized: Unauthorized
+2026-04-14 10:34:54,233 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 121, in check_result
+    exceptions.Unauthorized.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 141, in detect
+    raise cls(description)
+aiogram.utils.exceptions.Unauthorized: Unauthorized
+2026-04-14 10:34:59,571 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 121, in check_result
+    exceptions.Unauthorized.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 141, in detect
+    raise cls(description)
+aiogram.utils.exceptions.Unauthorized: Unauthorized
+2026-04-14 10:35:04,981 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 121, in check_result
+    exceptions.Unauthorized.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 141, in detect
+    raise cls(description)
+aiogram.utils.exceptions.Unauthorized: Unauthorized
+2026-04-14 10:35:10,308 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 121, in check_result
+    exceptions.Unauthorized.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 141, in detect
+    raise cls(description)
+aiogram.utils.exceptions.Unauthorized: Unauthorized
+2026-04-14 10:35:15,768 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 121, in check_result
+    exceptions.Unauthorized.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 141, in detect
+    raise cls(description)
+aiogram.utils.exceptions.Unauthorized: Unauthorized
+2026-04-14 10:35:22,901 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 121, in check_result
+    exceptions.Unauthorized.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 141, in detect
+    raise cls(description)
+aiogram.utils.exceptions.Unauthorized: Unauthorized
+2026-04-14 10:35:28,227 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 121, in check_result
+    exceptions.Unauthorized.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 141, in detect
+    raise cls(description)
+aiogram.utils.exceptions.Unauthorized: Unauthorized
+2026-04-14 10:35:33,610 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 121, in check_result
+    exceptions.Unauthorized.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 141, in detect
+    raise cls(description)
+aiogram.utils.exceptions.Unauthorized: Unauthorized
+2026-04-14 10:35:38,815 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 121, in check_result
+    exceptions.Unauthorized.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 141, in detect
+    raise cls(description)
+aiogram.utils.exceptions.Unauthorized: Unauthorized
+2026-04-14 10:35:44,099 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 121, in check_result
+    exceptions.Unauthorized.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 141, in detect
+    raise cls(description)
+aiogram.utils.exceptions.Unauthorized: Unauthorized
+2026-04-14 10:35:49,395 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 121, in check_result
+    exceptions.Unauthorized.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 141, in detect
+    raise cls(description)
+aiogram.utils.exceptions.Unauthorized: Unauthorized
+2026-04-14 10:35:54,679 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 121, in check_result
+    exceptions.Unauthorized.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 141, in detect
+    raise cls(description)
+aiogram.utils.exceptions.Unauthorized: Unauthorized
+2026-04-14 10:36:00,027 - ERROR - Cause exception while getting updates.
+Traceback (most recent call last):
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/dispatcher/dispatcher.py", line 381, in start_polling
+    updates = await self.bot.get_updates(
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/bot.py", line 110, in get_updates
+    result = await self.request(api.Methods.GET_UPDATES, payload)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/base.py", line 236, in request
+    return await api.make_request(await self.get_session(), self.server, self.__token, method, data, files,
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 140, in make_request
+    return check_result(method, response.content_type, response.status, await response.text())
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/bot/api.py", line 121, in check_result
+    exceptions.Unauthorized.detect(description)
+  File "/Users/vivekkumar/Library/Python/3.9/lib/python/site-packages/aiogram/utils/exceptions.py", line 141, in detect
+    raise cls(description)
+aiogram.utils.exceptions.Unauthorized: Unauthorized
+2026-04-14 10:36:05,531 - INFO - ⏳ Initializing bot components...
+2026-04-14 10:36:05,532 - INFO - Connecting to 91.108.56.177:443/TcpFull...
+2026-04-14 10:36:05,655 - INFO - Connection to 91.108.56.177:443/TcpFull complete!
+2026-04-14 10:36:06,496 - INFO - 🚀 Bridge workers started
+2026-04-14 10:36:06,497 - INFO - 📥 Response handler started
+2026-04-14 10:36:06,497 - INFO - 🔔 Status update handler started
+2026-04-14 10:36:11,260 - INFO - ✅ Webhook cleared, pending updates dropped
+2026-04-14 10:36:11,645 - INFO - ✅ Old updates skipped
+2026-04-14 10:36:11,646 - INFO - 🚀 Bot started successfully
+2026-04-14 10:36:11,646 - INFO - Start polling.
